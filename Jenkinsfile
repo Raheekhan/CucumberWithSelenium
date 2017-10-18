@@ -8,7 +8,8 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh '"\'$M3/bin/mvn\' -Dmaven.test.failure.ignore clean package"'
+        sh '''"mvnHome = tool \'M3\'",
+"\'$M3/bin/mvn\' -Dmaven.test.failure.ignore clean package"'''
       }
     }
     stage('Email') {
