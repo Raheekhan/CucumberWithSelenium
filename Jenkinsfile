@@ -4,16 +4,11 @@ pipeline {
     stage('Preparation') {
       steps {
         git 'https://github.com/jglick/simple-maven-project-with-tests.git'
-        mvnHome = tool 'M3'
       }
     }
     stage('Build') {
       steps {
-        if (isUnix()) {
-         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
-      } else {
-         bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
-      }
+         sh "'${M3}/bin/mvn' -Dmaven.test.failure.ignore clean package"
     }
     }
     stage('Email') {
